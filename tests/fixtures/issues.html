@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<title>X</title>
+<title>Duplicate title that is far too long and should trigger the heuristic warning path</title>
+<meta name="description" content="">
+<meta name="description" content="second duplicate description">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="http://[::1">
+<meta property="og:title" content="Only partial OG">
+<script type="application/ld+json">{ invalid json,,, }</script>
+<script type="application/ld+json">   </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"#a"},{"@type":"Article","@id":"#a"}]}</script>
+</head>
+<body>
+<h2>Starts at H2 without H1</h2>
+<h4>Skipped from H2 to H4</h4>
+<h2></h2>
+<h1>First H1</h1>
+<h1>Second H1</h1>
+<a>empty link no href</a>
+<a href="">empty href</a>
+<a href="https://example.com/x" target="_blank">blank without rel</a>
+<a href="::::bad url">malformedish</a>
+<a href="https://external.example/y"></a>
+<a href="mailto:test@example.com">email us</a>
+<img src="https://example.com/missing-alt.png">
+<img src="https://example.com/broken.png" alt="broken alt">
+<a href="#frag">frag</a>
+</body>
+</html>

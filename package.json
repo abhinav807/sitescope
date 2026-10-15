@@ -1,0 +1,61 @@
+{
+  "name": "sitescope",
+  "version": "1.0.1",
+  "description": "SiteScope — Inspect. Understand. Improve. Privacy-first website inspection and SEO analysis.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "dev:chrome": "vite --mode chrome",
+    "dev:firefox": "vite --mode firefox",
+    "build": "npm run typecheck && vite build && node scripts/bundle-workers.mjs",
+    "build:chrome": "vite build --mode chrome && node scripts/bundle-workers.mjs --browser=chrome",
+    "build:firefox": "vite build --mode firefox && node scripts/bundle-workers.mjs --browser=firefox",
+    "build:edge": "vite build --mode edge && node scripts/bundle-workers.mjs --browser=edge",
+    "build:opera": "vite build --mode opera && node scripts/bundle-workers.mjs --browser=opera",
+    "build:brave": "vite build --mode brave && node scripts/bundle-workers.mjs --browser=brave",
+    "build:all": "node scripts/build.mjs --all",
+    "bundle:workers": "node scripts/bundle-workers.mjs --all",
+    "package": "node scripts/build.mjs --all --zip",
+    "package:all": "node scripts/build.mjs --all --zip",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "tsc --noEmit -p tsconfig.json && echo \"lint: typecheck passed (no eslint configured; strict TS is the gate)\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "verify:chrome": "node scripts/verify-browser.mjs --browser=chrome",
+    "verify:edge": "node scripts/verify-browser.mjs --browser=edge",
+    "verify:brave": "node scripts/verify-browser.mjs --browser=brave",
+    "verify:opera": "node scripts/verify-browser.mjs --browser=opera",
+    "lint:firefox": "web-ext lint --source-dir=dist/firefox",
+    "preview": "vite preview",
+    "icons": "node scripts/generate-icons.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "0.544.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.323",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.5",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "archiver": "7.0.1",
+    "autoprefixer": "10.4.20",
+    "esbuild": "0.21.5",
+    "jsdom": "25.0.1",
+    "playwright": "^1.49.1",
+    "playwright-core": "^1.49.1",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.14",
+    "typescript": "5.6.3",
+    "vite": "5.4.11",
+    "vitest": "2.1.8",
+    "web-ext": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

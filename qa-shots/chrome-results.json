@@ -1,0 +1,110 @@
+{
+  "browser": "chrome",
+  "results": [
+    {
+      "id": "install-sw",
+      "status": "PASS",
+      "detail": "background SW running, extension id fpnjmjafihiflclggfnajclekdeikilb"
+    },
+    {
+      "id": "popup-renders",
+      "status": "PASS",
+      "detail": "popup shows honest unsupported-page state (tab URL hidden from automation without user gesture)"
+    },
+    {
+      "id": "inject-messaging",
+      "status": "BLOCKED",
+      "detail": "no host grant without user gesture in automation (inject: Cannot access contents of the page. Extension manifest must request permission to access the respective host.); manual toolbar-click test required"
+    },
+    {
+      "id": "engine-real-dom",
+      "status": "PASS",
+      "detail": "built engine in real Chromium DOM: 15 findings"
+    },
+    {
+      "id": "dashboard-tabs",
+      "status": "PASS",
+      "detail": "13/13 tabs render content"
+    },
+    {
+      "id": "findings-filter",
+      "status": "PASS",
+      "detail": "severity filter shows 1 critical (expected 1)"
+    },
+    {
+      "id": "findings-search",
+      "status": "PASS",
+      "detail": "search \"canonical\" → 2 finding(s)"
+    },
+    {
+      "id": "export-tab-renders",
+      "status": "PASS",
+      "detail": "export cards found: 1"
+    },
+    {
+      "id": "export-json",
+      "status": "PASS",
+      "detail": "15 findings round-trip from live result"
+    },
+    {
+      "id": "export-filename",
+      "status": "PASS",
+      "detail": "sitescope-127.0.0.1-20261015-2121.json"
+    },
+    {
+      "id": "export-links-csv",
+      "status": "PASS",
+      "detail": "3 rows, real URLs"
+    },
+    {
+      "id": "export-images-csv",
+      "status": "PASS",
+      "detail": "2 rows"
+    },
+    {
+      "id": "export-html",
+      "status": "PASS",
+      "detail": "8896 bytes, html filename sitescope-127.0.0.1-20261015-2121.html"
+    },
+    {
+      "id": "settings-persist",
+      "status": "PASS",
+      "detail": "stored=light applied=true"
+    },
+    {
+      "id": "robots-privacy",
+      "status": "PASS",
+      "detail": "clicked; server robots.txt hits before=0 after=0 (pass = no silent fetch; grant path is manual) — state visible: yes"
+    },
+    {
+      "id": "issues-fixture",
+      "status": "PASS",
+      "detail": "5 critical / 14 warnings on issues page (navigation re-analysis works)"
+    },
+    {
+      "id": "large-page",
+      "status": "PASS",
+      "detail": "10005 elements in 334ms, UI caps tables at 300/400 rows"
+    },
+    {
+      "id": "empty-page",
+      "status": "PASS",
+      "detail": "empty doc reports honestly, no mock data"
+    },
+    {
+      "id": "unsupported-state",
+      "status": "PASS",
+      "detail": "popup-as-tab handles extension-scheme active tab: \"S SiteScope (no tab) Private: analysis runs locally Unsupported page  No active tab URL wa...\""
+    },
+    {
+      "id": "network-audit",
+      "status": "PASS",
+      "detail": "2013 local hits; external=0; robots.txt hits=0 (only from explicit button)"
+    },
+    {
+      "id": "console-clean",
+      "status": "PASS",
+      "detail": "zero uncaught errors across popup/dashboard/fixture/SW"
+    }
+  ]
+}

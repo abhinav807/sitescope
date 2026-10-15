@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "SiteScope — Website Inspector & SEO Analysis",
+  "version": "1.0.1",
+  "description": "Inspect any website's SEO metadata, headings, links, images, structured data and technical signals in one click. Private, local, free.",
+  "minimum_chrome_version": "114",
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "SiteScope — Analyze this page",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "host_permissions": [],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
+  "side_panel": {
+    "default_path": "sidepanel/sidepanel.html"
+  }
+}
