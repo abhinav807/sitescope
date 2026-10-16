@@ -1,7 +1,13 @@
 /** Background service worker (MV3) / background script (Firefox).
  * No browsing surveillance: only responds to user-triggered analysis + dashboard open.
  * No network calls, no telemetry.
+ *
+ * Message validation: incoming messages must match the known-type allowlist
+ * (see messaging.ts); content-script responses are shape-checked before being
+ * forwarded so a compromised or buggy page context cannot push arbitrary
+ * payloads into extension pages.
  */
+import { isKnownIncomingMessage, isPlausibleAnalysisResult, isValidTabId } from '../lib/browser/messaging';
 
 type Msg = { type?: string; [k: string]: unknown };
 
@@ -14,9 +20,35 @@ function api(): typeof chrome | undefined {
   }
 }
 
+/** Forwards only validated analysis responses; rejects anything else safely. */
+function forwardAnalysisResponse(raw: unknown, sendResponse: (r: unknown) => void): boolean {
+  if (
+    typeof raw === 'object' &&
+    raw !== null &&
+    (raw as Record<string, unknown>).type === 'SITESCOPE_ANALYZE_RESPONSE'
+  ) {
+    const body = raw as Record<string, unknown>;
+    if (body.ok === true && isPlausibleAnalysisResult(body.result)) {
+      sendResponse(raw);
+      return true;
+    }
+    if (body.ok !== true && typeof body.error === 'string') {
+      sendResponse({ type: 'SITESCOPE_ANALYZE_RESPONSE', ok: false, error: body.error.slice(0, 500) });
+      return true;
+    }
+  }
+  sendResponse({
+    type: 'SITESCOPE_ANALYZE_RESPONSE',
+    ok: false,
+    error: 'The page returned an invalid analysis response.',
+  });
+  return true;
+}
+
 const ext = api();
 ext?.runtime?.onMessage?.addListener((msg: Msg, sender, sendResponse: (r: unknown) => void) => {
-  if (!msg || typeof msg.type !== 'string') return undefined;
+  if (!isKnownIncomingMessage(msg)) return undefined;
+  void sender;
   if (msg.type === 'SITESCOPE_OPEN_DASHBOARD') {
     (async () => {
       try {
@@ -34,21 +66,22 @@ ext?.runtime?.onMessage?.addListener((msg: Msg, sender, sendResponse: (r: unknow
       try {
         const tabs = await ext!.tabs!.query({ active: true, currentWindow: true });
         const tab = tabs?.[0];
-        if (!tab?.id) {
+        if (!isValidTabId(tab?.id)) {
           sendResponse({ type: 'SITESCOPE_ANALYZE_RESPONSE', ok: false, error: 'No active tab.' });
           return;
         }
+        const tabId: number = tab.id as number;
         // Forward to content script; inject first if needed.
         try {
-          const resp = await ext!.tabs!.sendMessage(tab.id, { type: 'SITESCOPE_ANALYZE_REQUEST' });
-          sendResponse(resp);
+          const resp = await ext!.tabs!.sendMessage(tabId, { type: 'SITESCOPE_ANALYZE_REQUEST' });
+          forwardAnalysisResponse(resp, sendResponse);
           return;
         } catch {
           /* inject then retry */
         }
         try {
-          await ext!.scripting!.executeScript({ target: { tabId: tab.id }, files: ['content.js'] });
-        } catch (e) {
+          await ext!.scripting!.executeScript({ target: { tabId }, files: ['content.js'] });
+        } catch {
           sendResponse({
             type: 'SITESCOPE_ANALYZE_RESPONSE',
             ok: false,
@@ -57,9 +90,9 @@ ext?.runtime?.onMessage?.addListener((msg: Msg, sender, sendResponse: (r: unknow
           return;
         }
         try {
-          const resp = await ext!.tabs!.sendMessage(tab.id, { type: 'SITESCOPE_ANALYZE_REQUEST' });
-          sendResponse(resp);
-        } catch (e) {
+          const resp = await ext!.tabs!.sendMessage(tabId, { type: 'SITESCOPE_ANALYZE_REQUEST' });
+          forwardAnalysisResponse(resp, sendResponse);
+        } catch {
           sendResponse({
             type: 'SITESCOPE_ANALYZE_RESPONSE',
             ok: false,

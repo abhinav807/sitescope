@@ -125,5 +125,62 @@ export function sendRuntimeMessage(
 export function parseAnalysisResponse(raw: unknown): AnalysisResult | null {
   if (!isAnalyzeResponse(raw)) return null;
   if (!raw.ok || !raw.result) return null;
+  if (!isPlausibleAnalysisResult(raw.result)) return null;
   return raw.result as AnalysisResult;
+}
+
+/**
+ * Runtime shape guard for analysis results. TypeScript types are compile-time
+ * only — anything crossing the extension messaging boundary (content script,
+ * background relay, storage) is untrusted until validated here.
+ *
+ * Checks are intentionally shallow and bounded: required top-level fields with
+ * correct primitive types, a findings array within sane limits, per-finding
+ * required fields, and an overall serialized-size cap. Returns false (reject)
+ * rather than throwing, so callers degrade to error states instead of crashing.
+ */
+const MAX_RESPONSE_BYTES = 5 * 1024 * 1024;
+const MAX_FINDINGS = 20000;
+const MAX_FINDING_FIELD_CHARS = 20000;
+
+const SEVERITIES = new Set(['critical', 'warning', 'info', 'passed']);
+
+export function isPlausibleAnalysisResult(raw: unknown): boolean {
+  if (typeof raw !== 'object' || raw === null) return false;
+  try {
+    // Cheap size gate first: stringify cost is linear and bounded by the cap.
+    const approx = JSON.stringify(raw);
+    if (typeof approx !== 'string' || approx.length > MAX_RESPONSE_BYTES) return false;
+    const r = raw as Record<string, unknown>;
+    if (typeof r.pageUrl !== 'string' || r.pageUrl.length === 0 || r.pageUrl.length > 4000) return false;
+    if (typeof r.pageTitle !== 'string' || typeof r.analyzedAt !== 'string') return false;
+    if (!Array.isArray(r.findings) || r.findings.length > MAX_FINDINGS) return false;
+    for (const f of r.findings) {
+      if (typeof f !== 'object' || f === null) return false;
+      const fo = f as Record<string, unknown>;
+      if (typeof fo.id !== 'string' || fo.id.length === 0 || fo.id.length > 200) return false;
+      if (typeof fo.category !== 'string' || typeof fo.title !== 'string') return false;
+      if (typeof fo.severity !== 'string' || !SEVERITIES.has(fo.severity)) return false;
+      if (typeof fo.explanation !== 'string' || typeof fo.recommendation !== 'string') return false;
+      if (fo.explanation.length > MAX_FINDING_FIELD_CHARS || fo.recommendation.length > MAX_FINDING_FIELD_CHARS) return false;
+    }
+    return true;
+  } catch {
+    // Unstringifiable (BigInt, cycles) or exotic — reject, never throw.
+    return false;
+  }
+}
+
+/** Message-type allowlist for the background relay (unknown types are ignored). */
+const KNOWN_INCOMING_TYPES = new Set(['SITESCOPE_OPEN_DASHBOARD', 'SITESCOPE_ANALYZE_VIA_BACKGROUND']);
+
+export function isKnownIncomingMessage(msg: unknown): msg is { type: string; [k: string]: unknown } {
+  if (typeof msg !== 'object' || msg === null) return false;
+  const t = (msg as Record<string, unknown>).type;
+  return typeof t === 'string' && KNOWN_INCOMING_TYPES.has(t);
+}
+
+/** Tab IDs crossing the boundary must be finite non-negative integers. */
+export function isValidTabId(id: unknown): id is number {
+  return typeof id === 'number' && Number.isInteger(id) && id >= 0;
 }

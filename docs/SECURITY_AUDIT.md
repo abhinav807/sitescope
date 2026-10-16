@@ -1,4 +1,4 @@
-# Security & Privacy Audit — SiteScope 1.0.1 (2026-10-11, Release Verification Sprint)
+# Security & Privacy Audit — SiteScope 1.0.1 (2026-10-11 base; hardening pass 2026-10-16)
 
 Auditor method: source grep over `src/`, manifest diff across `dist/*/manifest.json`,
 production + dev `npm audit`, built-bundle URL/string inspection, and a live
@@ -84,3 +84,16 @@ that produced it.
 - None in code. Residual risk is procedural: Firefox/Opera builds are
   artifact-validated only (binaries unavailable here); the toolbar-click host-grant
   path and OS-level file-save step require the documented manual pass.
+
+## 9. Hardening pass 2026-10-16 — verified fixes vs. assumptions
+
+Three Stage-A risks were fixed with minimal diffs. Each is VERIFIED by the
+evidence stated; anything beyond that is marked as assumption/limitation.
+
+| Risk | Fix (files) | Verified by | Assumption / limit |
+| ---- | ----------- | ----------- | ------------------ |
+| CSV formula injection | `neutralizeCsvFormula()` in `src/lib/utils/sanitize.ts`, applied inside `escapeCsvCell` (covers links/images/findings CSVs) | 12 new tests in `tests/csv-formula.test.ts` (triggers, quoting separation, per-path hostile content, full-row invariant); 56/56 suite green; export assertions still pass in 4 live browsers | First-character check only; Excel/Sheets/LibreOffice differ — mitigation, not universal safety proof |
+| Unvalidated message payloads | `isPlausibleAnalysisResult` + 5 MB / 20k-findings caps in `parseAnalysisResponse`; `isKnownIncomingMessage` / `isValidTabId` + response guard in `src/background/background.ts` | 14 new tests in `tests/message-validation.test.ts` (malformed/oversized/invalid/valid); background wiring compiles and SW runs clean in 4 browsers | Handler-level wiring has no unit test (background module not importable in jsdom); relies on live SW smoke + typecheck |
+| Untrusted persisted settings | `sanitizeSettings` / `sanitizeHistory` in `src/lib/settings.ts`, applied in `loadSettings` / `loadHistory` | New tests in `tests/storage-validation.test.ts` incl. end-to-end corrupt-payload round-trips through the real memory store; settings-persist still green in 4 browsers | Corrupt values are reset, not migrated — a downgrade path could reset exotic-but-valid future fields to defaults |
+
+No telemetry, services, dependencies, permissions, or UI scope changed in this pass.

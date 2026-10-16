@@ -39,7 +39,12 @@ function firefoxRejectingApi() {
   };
 }
 
-const OK = { type: 'SITESCOPE_ANALYZE_RESPONSE', ok: true, result: { pageUrl: 'https://example.com/' } };
+const OK = {
+  type: 'SITESCOPE_ANALYZE_RESPONSE',
+  ok: true,
+  // Minimal shape-valid result (see isPlausibleAnalysisResult).
+  result: { pageUrl: 'https://example.com/', pageTitle: 't', analyzedAt: '2026-01-01', findings: [] },
+};
 
 describe('sendMessageToTab dual-style handling', () => {
   it('resolves via Chrome-style callback API', async () => {

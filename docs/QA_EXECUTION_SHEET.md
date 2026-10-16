@@ -43,7 +43,8 @@ Result log (append rows as needed):
 
 | Date | Tester | Browser + version | Rows completed | Failures filed |
 |---|---|---|---|---|
-| 2026-10-11 | automation (harness) | Chromium 131 / Brave 155.1.97.56 / Edge 155.0.4283.45 / Opera 137.0.6036.39 | 1–8, 10–11 (partial), 13, 15–16 | none (3 product bugs found across sprints, fixed in 1.0.1) |
+| 2026-10-16 | automation (harness) | Chromium 131 / Brave 155.1.97.56 / Edge 155.0.4283.45 / Opera 137.0.6036.39 | 1–9a, 10–11 (partial), 13, 15–16 | none — hardening pass: exports/settings unchanged for valid data, 0 console errors |
+| 2026-10-16 | automation (unit) | vitest 2.1.8 | 56/56 (incl. 36 new: csv-formula 12, message-validation 14, storage-validation 10) | 1 test-authoring error caught by the suite itself (evidence-column assumption), fixed |
 | 2026-10-11 | automation (web-ext lint) | Firefox 157.0.1 target (binary absent; artifact only) | 1 (manifest validity) | 0 errors; 2 vendor-only warnings |
 |  |  |  |  |  |
 

@@ -4,6 +4,12 @@ All notable changes to SiteScope are documented here. Format follows Keep a Chan
 
 ## [Unreleased]
 
+- Security hardening (no behavior change for valid inputs): CSV formula-injection
+  mitigation (`'` marker on trigger-leading cells, all three CSV paths), runtime
+  message/response validation with size caps in the background relay, and strict
+  validation of persisted settings/history with safe defaults. 36 new regression
+  tests (56 total green); verified live on Chromium/Brave/Edge/Opera with zero
+  console errors and unchanged export content.
 - Product identity: consistent "Made and designed by Abhinav Goyal and GoldenHour
   Delhi" attribution (popup footer, dashboard footer, Settings About section),
   copyright line, HTML author metadata, and a new NOTICE.md (ownership + accurate
