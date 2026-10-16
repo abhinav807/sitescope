@@ -79,12 +79,12 @@ messaging path is unit-covered for the promise-style API.
 NOT APPLICABLE: mobile browsers, backend/data-deletion flows (no backend),
 payments/identity disclosures (none).
 
-## F. Final artifacts (SHA-256, rebuilt + re-verified 2026-10-15; sizes stable, hashes rotated by zip timestamps)
+## F. Final artifacts (SHA-256, rebuilt + re-verified 2026-10-16 with owner QR bundled; sizes grew by the 52 KB QR image)
 
-- `release/sitescope-chrome.zip` — 88241 B — `AB988A39DFFCA159EA0C98EE645D13159E3F80A1C73D1E0802F743FA8131D89E`
-- `release/sitescope-firefox.zip` — 88290 B — `D691F4DDE13C686A68438F6DAC4578EF6C9F0EBE9E061B8A0F845A5083224C1D`
-- `release/sitescope-edge.zip` — 88241 B — `14EBF4FDD638775DEBA7B9843C827AC95CA926B866473F17DA455C809CFF5BEF`
-- `release/sitescope-opera.zip` — 88241 B — `86B076D29BD99BEC682F15C0FE2B88D3CBE52448E4CCDB7FF924891F223D3295`
-- `release/sitescope-brave.zip` — 88241 B — `080AD47EAF8FAFEEAC35F0E5B1775698EF3A3893447618BB6C61305ED9D9C142`
+- `release/sitescope-chrome.zip` — 143922 B — `274A174080422FB924FF6B953D17733A14F67E7ED5B9E8B2D227AF5B8E6F0460`
+- `release/sitescope-firefox.zip` — 143971 B — `719F0112CFD3A05863505FAD3A0818E0EA3CE7583ED9C593330E7C8954147F6D`
+- `release/sitescope-edge.zip` — 143922 B — `EB12B678591C465C841F901D91812AE04DA5B8DE218F2C20AC9110CBEC86A74A`
+- `release/sitescope-opera.zip` — 143922 B — `0F08C9A022414514F33B2090A61ECBE8F580305375FEF4F904E71447ED9394B8`
+- `release/sitescope-brave.zip` — 143922 B — `24CA27F8E461FFFBEACC8B0EC168E6AFB52C4CB28EE28F12FAA15AD195C95E7B`
 
 Store drafts: `docs/STORE_LISTINGS.md` (support contacts final). QA evidence: `qa-shots/{chrome,brave,edge,opera}-results.json` + PNG screenshots (see `docs/SCREENSHOTS.md`). Release-notes draft: `docs/RELEASE_NOTES_v1.0.1.md` (for paste into GitHub Release — NOT created).

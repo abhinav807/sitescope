@@ -13,7 +13,7 @@ All at 1280×800 viewport against the deterministic local fixture site
 | `<browser>-dashboard-overview.png` | 2. Findings overview | GENUINE, store-ready |
 | `<browser>-dashboard-headings.png` | 3. Headings visualizer | GENUINE, store-ready |
 | `<browser>-dashboard-export.png` | 5. Export tab | GENUINE, store-ready |
-| `<browser>-dashboard-support.png` | 6. Support SiteScope (chai + contacts) | GENUINE, store-ready (currently shows honest QR-coming-soon fallback; re-capture after owner QR lands) |
+| `<browser>-dashboard-support.png` | 6. Support SiteScope (chai + contacts) | GENUINE, store-ready (chrome capture shows the real owner QR; re-capture other browsers only if their fallback shots predate the QR) |
 
 Machine-readable evidence alongside: `<browser>-results.json`, `<browser>-inject.json`.
 

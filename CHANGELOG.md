@@ -10,10 +10,10 @@ All notable changes to SiteScope are documented here. Format follows Keep a Chan
   third-party license table). LICENSE holder updated; MIT terms unchanged.
 - New dashboard Support tab ("Support SiteScope", warm ivory/amber design):
   voluntary Buy Me a Chai section with locally bundled owner-supplied UPI QR
-  (offline, no tracking, never auto-pays), contact section with the verified
+  (`public/support/upi-qr.png`, sha256-pinned, byte-identical in all five builds;
+  offline, no tracking, never auto-pays), contact section with the verified
   support addresses, and an About section. No new permissions, no external
-  requests. UPI QR image pending from owner at `public/support/upi-qr.png`
-  (builds continue with an honest in-page fallback until it lands).
+  requests.
 
 ## [1.0.1] — 2026-10-11 (Release Verification Sprint)
 
