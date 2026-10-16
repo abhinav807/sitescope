@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Severity } from '../types';
+import { extensionApi } from '../lib/browser/api';
 
 export function Badge({ severity, children }: { severity: Severity | string; children?: React.ReactNode }) {
   const label = children ?? severity;
@@ -39,8 +40,7 @@ export function Field({ label, children }: { label: string; children: React.Reac
   );
 }
 
-export function CopyButton({ value, label }: { value: string; label: string }) {
-  const [done, setDone] = React.useState(false);
+export function CopyButton({ value, label }: { value: string; label: string }) {  const [done, setDone] = React.useState(false);
   return (
     <button
       type="button"
@@ -60,4 +60,23 @@ export function CopyButton({ value, label }: { value: string; label: string }) {
       {done ? 'Copied ✓' : `Copy ${label}`}
     </button>
   );
+}
+
+/** Extension version from the installed manifest (falls back gracefully outside it). */
+export function VersionTag() {
+  const [v, setV] = React.useState('…');
+  React.useEffect(() => {
+    try {
+      const api = extensionApi();
+      const m = api?.runtime?.getManifest?.();
+      if (m?.version) {
+        setV(`v${m.version}`);
+        return;
+      }
+    } catch {
+      /* fall through */
+    }
+    setV('v1.0.1');
+  }, []);
+  return <>{v}</>;
 }

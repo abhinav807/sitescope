@@ -2,6 +2,19 @@
 
 All notable changes to SiteScope are documented here. Format follows Keep a Changelog.
 
+## [Unreleased]
+
+- Product identity: consistent "Made and designed by Abhinav Goyal and GoldenHour
+  Delhi" attribution (popup footer, dashboard footer, Settings About section),
+  copyright line, HTML author metadata, and a new NOTICE.md (ownership + accurate
+  third-party license table). LICENSE holder updated; MIT terms unchanged.
+- New dashboard Support tab ("Support SiteScope", warm ivory/amber design):
+  voluntary Buy Me a Chai section with locally bundled owner-supplied UPI QR
+  (offline, no tracking, never auto-pays), contact section with the verified
+  support addresses, and an About section. No new permissions, no external
+  requests. UPI QR image pending from owner at `public/support/upi-qr.png`
+  (builds continue with an honest in-page fallback until it lands).
+
 ## [1.0.1] — 2026-10-11 (Release Verification Sprint)
 
 Fixed two defects found during verification that would have broken the release:

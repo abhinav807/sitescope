@@ -78,3 +78,33 @@ body.light {
 .ss-table th { text-align: left; color: var(--muted); font-weight: 600; padding: 6px 8px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); }
 .ss-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---- Support SiteScope experience: warm ivory/amber indie card set ---- */
+.ss-support { --sup-bg: #f6f1e3; --sup-ink: #241c0e; --sup-muted: #6f6040; --sup-line: #e0d2ac; --sup-accent: #a86e12; --sup-accent-ink: #fff8e8; }
+.ss-support-hero, .ss-support-card {
+  background: var(--sup-bg); color: var(--sup-ink);
+  border: 1px solid var(--sup-line); border-radius: 14px; padding: 16px;
+}
+.ss-support-hero { display: flex; gap: 14px; align-items: flex-start; }
+.ss-support-emblem {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border-radius: 16px;
+  background: #b97f1f; color: #fff8e8;
+}
+.ss-support-headline { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: var(--sup-ink); }
+.ss-support-lede { margin: 0; color: var(--sup-muted); font-size: 13px; max-width: 60ch; }
+.ss-support-card h3 { margin: 0 0 10px; font-size: 14px; display: flex; gap: 7px; align-items: center; color: var(--sup-ink); }
+.ss-support-chai { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.ss-support-note { color: var(--sup-muted); font-size: 12.5px; margin: 8px 0 0; max-width: 62ch; }
+.ss-support-card .ss-muted { color: var(--sup-muted); }
+.ss-support-card .ss-ghost-btn { border-color: var(--sup-line); color: var(--sup-ink); background: #fffdf6; }
+.ss-support-card .ss-ghost-btn:hover { border-color: var(--sup-accent); }
+.ss-support-card a { color: var(--sup-accent); }
+.ss-support-card a:focus-visible { outline-color: var(--sup-accent); }
+.ss-support-about { display: grid; grid-template-columns: 110px 1fr; gap: 4px 12px; margin: 0 0 8px; font-size: 12.5px; }
+.ss-support-about dt { color: var(--sup-muted); }
+.ss-support-about dd { margin: 0; }
+@media (max-width: 560px) {
+  .ss-support-hero { flex-direction: column; }
+  .ss-support-about { grid-template-columns: 1fr; }
+}

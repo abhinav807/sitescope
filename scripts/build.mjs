@@ -79,6 +79,13 @@ const list = targets();
 for (const t of list) {
   run(`npx vite build --mode ${t}`);
   run(`node scripts/bundle-workers.mjs --browser=${t}`);
+  // Support assets: warn when the owner QR is absent (page shows its honest
+  // fallback), fail only on corrupt content — never ship a broken image.
+  try {
+    run(`node scripts/check-support-assets.mjs --browser=${t} --dist`);
+  } catch {
+    console.warn(`[build:${t}] support QR unavailable — continuing (release packaging requires the owner file).`);
+  }
   validateDist(t);
 }
 

@@ -13,7 +13,8 @@ import { filterFindings } from '../lib/analyzers/engine';
 import { analysisToJson, linksToCsv, imagesToCsv, findingsToCsv, reportToHtml, filenamesFor } from '../lib/export';
 import { loadSettings, saveSettings, resetSettings, loadHistory, appendHistory, clearHistory } from '../lib/settings';
 import { maskQuery, isSafeHref } from '../lib/utils/url';
-import { Badge, Empty, Loading, Field, CopyButton } from '../components/ui';
+import { Badge, Empty, Loading, Field, CopyButton, VersionTag } from '../components/ui';
+import SupportPanel from './SupportPanel';
 
 const TABS = [
   { id: 'overview', label: 'Overview' },
@@ -28,6 +29,7 @@ const TABS = [
   { id: 'responsive', label: 'Responsive' },
   { id: 'export', label: 'Export' },
   { id: 'resources', label: 'Resources' },
+  { id: 'support', label: 'Support' },
   { id: 'settings', label: 'Settings' },
 ] as const;
 
@@ -194,30 +196,13 @@ export default function DashboardApp() {
         <TabBody tab={tab} result={result} settings={settings} setSettings={setSettings} historyCount={historyCount} setHistoryCount={setHistoryCount} onAnalyze={() => analyze(false)} />
       ) : null}
 
-      <footer className="ss-muted" style={{ fontSize: 12, display: 'flex', gap: 8, alignItems: 'center', borderTop: '1px solid var(--border)', paddingTop: 12 }}>
+      <footer className="ss-muted" style={{ fontSize: 12, display: 'flex', gap: 8, alignItems: 'center', borderTop: '1px solid var(--border)', paddingTop: 12, flexWrap: 'wrap' }}>
         <ShieldCheck size={14} aria-hidden="true" />
         <span>SiteScope runs locally · No telemetry · <a href="#settings" style={{ color: 'inherit' }}>Privacy &amp; settings</a> · <VersionTag /></span>
+        <span style={{ marginLeft: 'auto' }}>Made and designed by Abhinav Goyal and GoldenHour Delhi · © 2026 · <a href="#support" style={{ color: 'inherit' }}>Support</a></span>
       </footer>
     </main>
   );
-}
-
-function VersionTag() {
-  const [v, setV] = React.useState('…');
-  React.useEffect(() => {
-    try {
-      const api = extensionApi();
-      const m = api?.runtime?.getManifest?.();
-      if (m?.version) {
-        setV(`v${m.version}`);
-        return;
-      }
-    } catch {
-      /* fall through */
-    }
-    setV('v1.0.1');
-  }, []);
-  return <>{v}</>;
 }
 
 function maskUrlForHistory(url: string): string {  try {
@@ -280,6 +265,7 @@ function TabBody(props: { tab: TabId; result: AnalysisResult; settings: Extensio
     case 'responsive': return <ResponsivePanel result={result} />;
     case 'export': return <ExportPanel result={result} settings={props.settings} />;
     case 'resources': return <ResourcesPanel />;
+    case 'support': return <SupportPanel />;
     case 'settings': return <SettingsPanel settings={props.settings} setSettings={props.setSettings} historyCount={props.historyCount} setHistoryCount={props.setHistoryCount} />;
     default: return <Overview result={result} />;
   }
@@ -950,6 +936,15 @@ function SettingsPanel(props: { settings: ExtensionSettings; setSettings: (s: Ex
           <li>Never reads form values, cookies, local/session storage or auth tokens; never executes page scripts.</li>
           <li>Content Security Policy: <span className="ss-mono">script-src 'self'; object-src 'self'</span>.</li>
         </ul>
+      </div>
+      <div className="ss-surface" style={{ padding: 12 }}>
+        <h3 style={{ margin: '0 0 6px', fontSize: 13 }}>About SiteScope <VersionTag /></h3>
+        <p style={{ margin: '0 0 4px', fontSize: 12.5 }}>Made and designed by Abhinav Goyal and GoldenHour Delhi.</p>
+        <p className="ss-muted" style={{ margin: '0 0 8px', fontSize: 12 }}>Copyright © 2026 Abhinav Goyal and GoldenHour Delhi. All rights reserved. Original code is MIT-licensed; third-party components keep their own licenses (see NOTICE.md).</p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a className="ss-ghost-btn" style={{ textDecoration: 'none' }} href="#support">Support SiteScope</a>
+          <a className="ss-ghost-btn" style={{ textDecoration: 'none' }} href="#resources">External resources</a>
+        </div>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@
     {
       "id": "dashboard-tabs",
       "status": "PASS",
-      "detail": "13/13 tabs render content"
+      "detail": "14/14 tabs render content"
     },
     {
       "id": "findings-filter",
@@ -49,7 +49,7 @@
     {
       "id": "export-filename",
       "status": "PASS",
-      "detail": "sitescope-127.0.0.1-20261015-2121.json"
+      "detail": "sitescope-127.0.0.1-20261016-1813.json"
     },
     {
       "id": "export-links-csv",
@@ -64,7 +64,7 @@
     {
       "id": "export-html",
       "status": "PASS",
-      "detail": "8896 bytes, html filename sitescope-127.0.0.1-20261015-2121.html"
+      "detail": "8896 bytes, html filename sitescope-127.0.0.1-20261016-1813.html"
     },
     {
       "id": "settings-persist",
@@ -84,7 +84,7 @@
     {
       "id": "large-page",
       "status": "PASS",
-      "detail": "10005 elements in 334ms, UI caps tables at 300/400 rows"
+      "detail": "10005 elements in 519ms, UI caps tables at 300/400 rows"
     },
     {
       "id": "empty-page",

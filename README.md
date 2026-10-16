@@ -2,6 +2,8 @@
 
 Free, private, public website inspection and SEO analysis for Chromium browsers and Firefox. One click shows SEO metadata, headings, social tags, structured data, images, links, indexing signals and technical configuration — computed **locally in your browser**. No backend, no tracking, no ads, no account.
 
+*Made and designed by Abhinav Goyal and GoldenHour Delhi. See NOTICE.md for ownership and third-party notices.*
+
 ## Features (all working, all local)
 
 - **Meta analyzer** — title, description, robots, canonical, lang, charset, viewport, duplicates, length heuristics (configurable).

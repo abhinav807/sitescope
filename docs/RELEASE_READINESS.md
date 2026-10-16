@@ -1,4 +1,4 @@
-# Release Readiness Report — SiteScope 1.0.1 (Final gate 2026-10-15)
+# Release Readiness Report — SiteScope 1.0.1 (Final gate 2026-10-15, re-verified this session)
 
 Verdict: **READY except for the manual-pass blocker below.** Support contacts are
 configured; nothing was submitted to any store. Every PASS was actually executed;
@@ -8,9 +8,9 @@ automation gaps are marked BLOCKED, never inferred.
 
 | Check | Result | Evidence |
 | ----- | ------ | -------- |
-| `typecheck` (strict tsc) | PASS | clean, run 2026-10-11 |
-| Unit tests | PASS | 16/16 (`engine` 4, `export-safety` 7, `messaging-compat` 5 — the last 5 are new regression tests for the Firefox fix) |
-| `build:all` (5 targets) | PASS | `dist/{chrome,firefox,edge,opera,brave}` + `bundle-workers` gate (fails on ESM markers in content/background); final gate 2026-10-15 |
+| `typecheck` (strict tsc) | PASS | clean (re-run 2026-10-15) |
+| Unit tests | PASS | 16/16, re-run 2026-10-15 (`engine` 4, `export-safety` 7, `messaging-compat` 5) |
+| `build:all` (5 targets) | PASS | `dist/{chrome,firefox,edge,opera,brave}` + `bundle-workers` gate; rebuilt 2026-10-15 |
 | `package:all` (5 ZIPs) | PASS | `release/sitescope-*.zip`, manifest at root, 0 `.map`, 0 `node_modules` (22 files each) |
 
 ## B. Real-browser verification (harness `scripts/verify-browser.mjs`, local fixtures)
@@ -28,8 +28,8 @@ post-verification change anywhere was the Firefox manifest `type` removal, which
 does not touch any Chromium build.)
 
 Per-check outcomes (identical on all four runnable browsers): install-SW PASS,
-popup-render PASS, engine-in-real-DOM PASS (15 findings), 13/13 dashboard tabs PASS,
-severity filter PASS, search PASS, export-tab PASS, JSON round-trip PASS, filename
+popup-render PASS, engine-in-real-DOM PASS (15 findings), 14/14 dashboard tabs PASS
+(incl. new Support tab), severity filter PASS, search PASS, export-tab PASS, JSON round-trip PASS, filename
 PASS, links CSV PASS (3 rows, real URLs), images CSV PASS, HTML report PASS,
 settings persistence PASS, robots-privacy PASS (0 silent fetches), issues-fixture
 PASS (5 critical/14 warnings incl. navigation re-analysis), large-page PASS (10,005
@@ -79,14 +79,12 @@ messaging path is unit-covered for the promise-style API.
 NOT APPLICABLE: mobile browsers, backend/data-deletion flows (no backend),
 payments/identity disclosures (none).
 
-## F. Final artifacts (SHA-256, final gate 2026-10-15; sizes identical to prior build, hashes rotated by zip timestamps)
+## F. Final artifacts (SHA-256, rebuilt + re-verified 2026-10-15; sizes stable, hashes rotated by zip timestamps)
 
-- `release/sitescope-chrome.zip` — 88241 B — `D437EF4431312EF6FA0F525D3B654B107D6BF50E65DFF8130579454B7AA34CF5`
-- `release/sitescope-firefox.zip` — 88290 B — `3B2985EED184E6B02E9491008103901D1C0A2F781420069DF394B4628F53EC95`
-- `release/sitescope-edge.zip` — 88241 B — `D17C55AA8F7803110E2279E3FF796CF3AA812DA551503AEC308CEB78F10CEAC9`
-- `release/sitescope-opera.zip` — 88241 B — `DE12D864B6AE3B893A1A71B4963605A09DB2D9519ACE91D5E1D4FE38AC01C349`
-- `release/sitescope-brave.zip` — 88241 B — `6F7FCC913D313C985CFC159BC52584A4C1C3537578BAE3E12E76E5EA6011A5B8`
+- `release/sitescope-chrome.zip` — 88241 B — `AB988A39DFFCA159EA0C98EE645D13159E3F80A1C73D1E0802F743FA8131D89E`
+- `release/sitescope-firefox.zip` — 88290 B — `D691F4DDE13C686A68438F6DAC4578EF6C9F0EBE9E061B8A0F845A5083224C1D`
+- `release/sitescope-edge.zip` — 88241 B — `14EBF4FDD638775DEBA7B9843C827AC95CA926B866473F17DA455C809CFF5BEF`
+- `release/sitescope-opera.zip` — 88241 B — `86B076D29BD99BEC682F15C0FE2B88D3CBE52448E4CCDB7FF924891F223D3295`
+- `release/sitescope-brave.zip` — 88241 B — `080AD47EAF8FAFEEAC35F0E5B1775698EF3A3893447618BB6C61305ED9D9C142`
 
-Store drafts: `docs/STORE_LISTINGS.md` (do not publish verbatim until screenshots +
-support email are final). QA evidence: `qa-shots/{chrome,brave,edge}-results.json`
-+ PNG screenshots.
+Store drafts: `docs/STORE_LISTINGS.md` (support contacts final). QA evidence: `qa-shots/{chrome,brave,edge,opera}-results.json` + PNG screenshots (see `docs/SCREENSHOTS.md`). Release-notes draft: `docs/RELEASE_NOTES_v1.0.1.md` (for paste into GitHub Release — NOT created).

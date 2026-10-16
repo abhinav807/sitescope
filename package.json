@@ -16,6 +16,7 @@
     "build:brave": "vite build --mode brave && node scripts/bundle-workers.mjs --browser=brave",
     "build:all": "node scripts/build.mjs --all",
     "bundle:workers": "node scripts/bundle-workers.mjs --all",
+    "support:check": "node scripts/check-support-assets.mjs --all --dist",
     "package": "node scripts/build.mjs --all --zip",
     "package:all": "node scripts/build.mjs --all --zip",
     "typecheck": "tsc --noEmit -p tsconfig.json",

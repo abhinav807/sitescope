@@ -2,8 +2,8 @@
 
 Auditor method: source grep over `src/`, manifest diff across `dist/*/manifest.json`,
 production + dev `npm audit`, built-bundle URL/string inspection, and a live
-network audit in real Chromium/Brave/Edge (fixture server request log, 2013 local
-hits, **0 external requests**). No finding below is claimed without the command
+network audit in real Chromium/Brave/Edge/Opera (fixture server request log, ~2000 local
+hits per run, **0 external requests**). No finding below is claimed without the command
 that produced it.
 
 ## 1. Data collection — PASS

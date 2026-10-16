@@ -287,7 +287,7 @@ async function main() {
     await dash.evaluate((r) => chrome.storage.local.set({ 'sitescope:last-result': r }), live);
     await dash.reload();
     await dash.waitForSelector('text=SiteScope report', { timeout: 10000 });
-    const tabIds = ['overview', 'seo', 'headings', 'social', 'structured', 'images', 'links', 'indexing', 'technical', 'responsive', 'export', 'resources', 'settings'];
+    const tabIds = ['overview', 'seo', 'headings', 'social', 'structured', 'images', 'links', 'indexing', 'technical', 'responsive', 'export', 'resources', 'support', 'settings'];
     let tabsOk = 0;
     for (const t of tabIds) {
       await dash.locator(`nav[aria-label="Report sections"] button:has-text("${t[0].toUpperCase() + t.slice(1)}")`).first().click().catch(() => {});
@@ -302,6 +302,9 @@ async function main() {
     await dash.evaluate(() => { location.hash = 'headings'; });
     await sleep(300);
     await dash.screenshot({ path: resolve(shots, `${browserName}-dashboard-headings.png`) });
+    await dash.evaluate(() => { location.hash = 'support'; });
+    await sleep(300);
+    await dash.screenshot({ path: resolve(shots, `${browserName}-dashboard-support.png`) });
     // Filters: severity select + search on overview
     await dash.evaluate(() => { location.hash = 'overview'; });
     await sleep(200);

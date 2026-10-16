@@ -150,9 +150,12 @@ export default function PopupApp() {
         />
       ) : null}
 
-      <footer className="ss-muted" style={{ fontSize: 11, display: 'flex', gap: 8, alignItems: 'center' }}>
-        <Info size={12} aria-hidden="true" />
-        <span>Free · No ads · No tracking. <a href="dashboard/dashboard.html#settings" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>Privacy &amp; settings</a></span>
+      <footer className="ss-muted" style={{ fontSize: 11, display: 'grid', gap: 2 }}>
+        <span style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          <Info size={12} aria-hidden="true" />
+          <span>Free · No ads · No tracking. <a href="dashboard/dashboard.html#settings" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>Privacy &amp; settings</a></span>
+        </span>
+        <span title="Made and designed by Abhinav Goyal and GoldenHour Delhi">Made and designed by Abhinav Goyal and GoldenHour Delhi · <a href="dashboard/dashboard.html#support" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>Support</a></span>
       </footer>
     </main>
   );
