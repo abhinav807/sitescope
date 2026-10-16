@@ -2,7 +2,7 @@
 
 All notable changes to SiteScope are documented here. Format follows Keep a Changelog.
 
-## [Unreleased]
+## [1.0.2] — 2026-10-16
 
 - Security hardening (no behavior change for valid inputs): CSV formula-injection
   mitigation (`'` marker on trigger-leading cells, all three CSV paths), runtime

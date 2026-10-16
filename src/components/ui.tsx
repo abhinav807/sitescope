@@ -76,7 +76,7 @@ export function VersionTag() {
     } catch {
       /* fall through */
     }
-    setV('v1.0.1');
+    setV('v1.0.2');
   }, []);
   return <>{v}</>;
 }

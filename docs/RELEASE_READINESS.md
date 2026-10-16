@@ -1,4 +1,4 @@
-# Release Readiness Report — SiteScope 1.0.1 (Final gate 2026-10-15, re-verified this session)
+# Release Readiness Report — SiteScope 1.0.2 (release gate 2026-10-16; v1.0.1 tag left untouched at dc07d3f)
 
 Verdict: **READY except for the manual-pass blocker below.** Support contacts are
 configured; nothing was submitted to any store. Every PASS was actually executed;
@@ -79,12 +79,12 @@ messaging path is unit-covered for the promise-style API.
 NOT APPLICABLE: mobile browsers, backend/data-deletion flows (no backend),
 payments/identity disclosures (none).
 
-## F. Final artifacts (SHA-256, rebuilt + re-verified 2026-10-16 with owner QR bundled; sizes grew by the 52 KB QR image)
+## F. Final artifacts (SHA-256, v1.0.2 release gate 2026-10-16; unit 56/56, browser 20/0/1 Chrome, lint 0/0/2, audit 0)
 
-- `release/sitescope-chrome.zip` — 143922 B — `274A174080422FB924FF6B953D17733A14F67E7ED5B9E8B2D227AF5B8E6F0460`
-- `release/sitescope-firefox.zip` — 143971 B — `719F0112CFD3A05863505FAD3A0818E0EA3CE7583ED9C593330E7C8954147F6D`
-- `release/sitescope-edge.zip` — 143922 B — `EB12B678591C465C841F901D91812AE04DA5B8DE218F2C20AC9110CBEC86A74A`
-- `release/sitescope-opera.zip` — 143922 B — `0F08C9A022414514F33B2090A61ECBE8F580305375FEF4F904E71447ED9394B8`
-- `release/sitescope-brave.zip` — 143922 B — `24CA27F8E461FFFBEACC8B0EC168E6AFB52C4CB28EE28F12FAA15AD195C95E7B`
+- `release/sitescope-chrome.zip` — 145364 B — `B7C8A144E98056A49DE7D66A4539DF970C670B4F27468757DF4A0E4E4ABFC7A7`
+- `release/sitescope-firefox.zip` — 145413 B — `778A20F2A249719DCDDF0EB774CD653BAD7AAD012139E06901A857DD76BF72B2`
+- `release/sitescope-edge.zip` — 145364 B — `39C6645C2B65D744F84F2026912D382019DC22F17F732B7F8C27CF9EAC2C44AA`
+- `release/sitescope-opera.zip` — 145364 B — `5B92F7E4A75605B7D73AF6601FAC459B2A142A3853825CE4DD181087701E3023`
+- `release/sitescope-brave.zip` — 145364 B — `E8F32BF5FB71A2633695979761E92673530B8688960D0753ECC8F40143DDCE93`
 
-Store drafts: `docs/STORE_LISTINGS.md` (support contacts final). QA evidence: `qa-shots/{chrome,brave,edge,opera}-results.json` + PNG screenshots (see `docs/SCREENSHOTS.md`). Release-notes draft: `docs/RELEASE_NOTES_v1.0.1.md` (for paste into GitHub Release — NOT created).
+Store drafts: `docs/STORE_LISTINGS.md` (support contacts final). QA evidence: `qa-shots/{chrome,brave,edge,opera}-results.json` + PNG screenshots (see `docs/SCREENSHOTS.md`). Release-notes draft: `docs/RELEASE_NOTES_v1.0.2.md` (body for the GitHub Release below).

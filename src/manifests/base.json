@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SiteScope — Website Inspector & SEO Analysis",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inspect any website's SEO metadata, headings, links, images, structured data and technical signals in one click. Private, local, free.",
   "minimum_chrome_version": "114",
   "action": {

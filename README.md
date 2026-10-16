@@ -36,6 +36,7 @@ combines those checks into a single click with practical recommendations, honest
 - [Known limitations](#n-known-limitations)
 - [Roadmap and contributions](#o-roadmap-and-contributions)
 - [FAQ](#p-faq)
+- [Legal disclaimer](#q-legal-disclaimer)
 
 ## B. Features
 
@@ -383,3 +384,47 @@ no new broad permissions without discussion).
   check the version footer. Details in [Updating](#k-updating-sitescope).
 - **How can I support the creator?** The dashboard **Support** tab (chai QR,
   voluntary) or email — see [Support SiteScope](#l-support-sitescope).
+
+## Q. Legal disclaimer
+
+> This section is general project information, not legal advice or a legal
+> opinion, and it guarantees no immunity from liability.
+
+**Informational tool, "as is".** SiteScope is a developer tool provided for
+informational and inspection purposes on an "AS IS" and "AS AVAILABLE" basis. To
+the extent permitted by applicable law, it carries no guarantee of being
+error-free, uninterrupted, accurate, complete, up to date, or suitable for every
+use. Analysis results should be independently reviewed before anyone relies on
+them for technical, business, security, accessibility, or other decisions.
+
+**Limited liability.** To the extent permitted by applicable law, Abhinav Goyal
+and GoldenHour Delhi disclaim liability for indirect or consequential loss arising
+from the use of, or inability to use, SiteScope. Nothing here excludes or limits
+any liability — or removes any right — where the applicable law prohibits such an
+exclusion or limitation.
+
+**Third-party copyright and intellectual property.** SiteScope may depend on
+third-party open-source libraries, tools, browser APIs, and other components (see
+[NOTICE.md](NOTICE.md)). Third-party names, logos, trademarks, and materials remain
+the property of their respective owners; their presence implies no endorsement or
+affiliation, and each component remains subject to its own licence and notices.
+The maintainers do not claim ownership of third-party material, and this project
+has not been independently audited for third-party intellectual-property clearance.
+
+If you believe material in this project infringes your copyright or other
+intellectual-property rights, contact **hello@goldenhourdelhi.co.in**
+(maintainer copy: **abhinavgoyal300@gmail.com**) identifying the relevant file or
+material, the rights you claim, and enough information for the claim to be
+reviewed. Credible reports will be reviewed and acted on where warranted.
+
+**Licence clarity.** Nothing in this disclaimer limits rights granted under the
+project's MIT licence ([LICENSE](LICENSE)) — including use, copying, modification,
+and redistribution under its terms — nor the obligations attached to third-party
+components. Separately: copyright in the project's original material belongs to
+Abhinav Goyal and GoldenHour Delhi; the **SiteScope** name and branding may be
+subject to separate rights as the project's claimed (unregistered) identifiers.
+
+**Applicable law.** This project is distributed subject to applicable law in India,
+including the Copyright Act, 1957, as amended, where relevant. This disclaimer is
+intended to be interpreted consistently with applicable Indian law. Nothing in it
+removes any rights or obligations that cannot lawfully be excluded.
